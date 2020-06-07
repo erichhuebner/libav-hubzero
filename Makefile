@@ -5,7 +5,7 @@
 # export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 # export PATH=/usr/local/bin:$PATH
-# export TMPDIR=~/mytmp && export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ && export PATH=/usr/local/bin:$PATH
+# export mkdir ~/mytmp && TMPDIR=~/mytmp && export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ && export PATH=/usr/local/bin:$PATH
 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir ${mkfile_path})
@@ -13,8 +13,9 @@ mkfile_dir := $(dir ${mkfile_path})
 install: mytmp pkgdeps autoconf automake nasm x264 libav env_vars
 
 env_vars:
-	@echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /etc/bashrc
-	@echo "PATH=/usr/local/bin:$PATH" >> /etc/bashrc
+# Merge env vars with what may already be set in /etc/bashrc
+#	@echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /etc/bashrc
+#	@echo "PATH=/usr/local/bin:$PATH" >> /etc/bashrc
 	@echo "==== Installation Complete ===="
 mytmp:
 	mkdir $@
