@@ -14,7 +14,7 @@ install: mytmp pkgdeps autoconf automake nasm x264 libav env_vars
 
 env_vars:
 # Merge env vars with what may already be set in /etc/bashrc
-#	@echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /etc/bashrc
+#	@echo "LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH" >> /etc/bashrc
 #	@echo "PATH=/usr/local/bin:$PATH" >> /etc/bashrc
 	@echo "==== Installation Complete ===="
 mytmp:
