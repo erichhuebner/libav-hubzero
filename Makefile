@@ -1,24 +1,8 @@
-# libav install for Centos 6 and Centos 7
-# Export these vars prior to installation.  Some are set permantenty in /etc/bashrc at the end of the install.
-# 
-# export TMPDIR=~/mytmp
-# export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-# export PATH=/usr/local/bin:$PATH
-# export mkdir ~/mytmp && TMPDIR=~/mytmp && export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/ && export PATH=/usr/local/bin:$PATH
 
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir ${mkfile_path})
 
-install: mytmp pkgdeps autoconf automake nasm x264 libav env_vars
-
-env_vars:
-# Merge env vars with what may already be set in /etc/bashrc
-#	@echo "LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH" >> /etc/bashrc
-#	@echo "PATH=/usr/local/bin:$PATH" >> /etc/bashrc
-	@echo "==== Installation Complete ===="
-mytmp:
-	mkdir $@
+install: pkgdeps autoconf automake nasm x264 libav
 
 pkgdeps:
 	yum install -y cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
